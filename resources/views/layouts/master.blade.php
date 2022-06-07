@@ -53,12 +53,12 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Yakin Ingni Keluar?</h5>
                     <button class="close" type="button" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
                 </div>
-                <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
+                <div class="modal-body">Pilih Logout untuk mengakhiri sesi.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
                     <form action="/logout" method="post">
@@ -79,6 +79,25 @@
 
     <!-- Custom scripts for all pages-->
     <script src="js/sb-admin-2.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/notiflix@3/dist/notiflix-aio-3.2.5.min.js"></script>
+    
+    <script>
+        @if (session('success'))
+            Notiflix.Report.success(
+                'success',
+                '{{ session('success') }}',
+                'Okay',
+            );
+        @endif
+        @if (session('error'))
+            Notiflix.Report.failure(
+                'Error',
+                '{{ session('error') }}',
+                'Okay',
+            );
+        @endif
+    </script>
+    @yield('script')
 
 </body>
 

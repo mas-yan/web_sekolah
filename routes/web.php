@@ -1,5 +1,7 @@
 <?php
 
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +15,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->middleware('auth');
+Route::middleware('auth')->group(function () {
+  Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+  Route::resource('/tags', TagController::class)->except(['show', 'edit']);
+});
