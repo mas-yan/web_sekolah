@@ -40,6 +40,7 @@
   
   <script>
     function edit(e) {
+      console.log(e);
       $('#editTag').modal('show')
       $('#form').attr('action', e.dataset.url)
       $('#edit-tag').val(e.dataset.value);

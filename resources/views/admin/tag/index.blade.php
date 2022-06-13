@@ -37,16 +37,7 @@
                     </tr>
                 </tfoot>
                 <tbody>
-                  @foreach ($tags as $tag)
-                      <tr>
-                        <td>{{$loop->iteration}}</td>
-                        <td>{{$tag->tag}}</td>
-                        <td>
-                          <button class="btn btn-warning edit" onclick="edit(this)" data-value="{{$tag->tag}}"><i class="fas fa-edit"></i></button> | 
-                          <button class="btn btn-danger"onclick="destroy(this)" id="{{$tag->tag}}" data-url="{{ route('tags.destroy', $tag->tag) }}" data-id="{{$tag->tag}}"><i class="fas fa-trash"></i></button>
-                        </td>
-                      </tr>
-                  @endforeach
+
                 </tbody>
             </table>
         </div>
@@ -64,7 +55,19 @@
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
   <script>
-      $('#dataTable').DataTable();
+    $(document).ready(function () {
+      $('#dataTable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{{ url()->current() }}',
+            columns: [
+                { data: 'DT_RowIndex', name: 'id' },
+                { data: 'tag', name: 'tag' },
+                { data: 'action', name: 'action' },
+
+            ]
+        });
+    });
 
     function destroy(e) {
       Notiflix.Confirm.show(

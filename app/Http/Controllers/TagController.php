@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
+use Yajra\DataTables\Facades\DataTables;
 
 class TagController extends Controller
 {
@@ -15,9 +16,16 @@ class TagController extends Controller
      */
     public function index()
     {
-        return view('admin.tag.index', [
-            'tags' => Tag::all()
-        ]);
+        if (request()->ajax()) {
+            $tags = Tag::query()->latest();
+            return DataTables::of($tags)
+                ->addIndexColumn()
+                ->addColumn('action', function ($tag) {
+                    return '<button class="btn btn-warning edit" onclick="edit(this)" data-url="' . route('tags.update', $tag->tag) . '" data-value="' . $tag->tag . '"><i class="fas fa-edit"></i></button> | <button class="btn btn-danger"onclick="destroy(this)" id="{{$tag->tag}}" data-url="' . route('tags.destroy', $tag->tag) . '" data-id="' . $tag->tag . '"><i class="fas fa-trash"></i></button>';
+                })
+                ->make();
+        }
+        return view('admin.tag.index');
     }
 
     /**
