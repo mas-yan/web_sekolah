@@ -1,4 +1,4 @@
-<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+<ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sc" id="accordionSidebar" style="overflow-y: scroll; overflow-x: hidden; height:100vh;">
 
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
@@ -27,17 +27,17 @@
   </div>
 
   <!-- Nav Item - Pages Collapse Menu -->
-  <li class="nav-item {{ request()->is('tags') ? 'active' : '' }}">
+  <li class="nav-item {{ request()->is('tags') || request()->is('categories') ? 'active' : '' }}">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
           aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-file-alt"></i>
           <span>Content Post</span>
       </a>
-      <div id="collapseTwo" class="collapse {{ request()->is('tags') ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div id="collapseTwo" class="collapse {{ request()->is('tags') || request()->is('categories') ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Post</h6>
               <a class="collapse-item {{request()->is('tags') ? 'active' : '' }}" href="{{route('tags.index')}}">Tag</a>
-              <a class="collapse-item" href="buttons.html">Category</a>
+              <a class="collapse-item {{request()->is('categories') ? 'active' : '' }}" href="{{route('categories.index')}}">Kategori</a>
               <a class="collapse-item" href="cards.html">Post</a>
           </div>
       </div>

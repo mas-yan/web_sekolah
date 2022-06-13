@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Tag')
+@section('title', 'Kategori')
 
 @section('style')    
     <!-- Custom styles for this page -->
@@ -13,9 +13,9 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3">
       <div class="d-flex justify-content-between">
-        <h5 class="m-0 font-weight-bold text-primary">Tag Post</h5>
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addTag">
-          Add Tag
+        <h5 class="m-0 font-weight-bold text-primary">Kategori Post</h5>
+        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addKategori">
+          Tambah Tag
         </button>
       </div>
     </div>
@@ -25,36 +25,18 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Tag</th>
+                        <th>Kategori</th>
                         <th>Action</th>
                     </tr>
                 </thead>
-                <tfoot>
-                    <tr>
-                        <th>No</th>
-                        <th>Tag</th>
-                        <th>Action</th>
-                    </tr>
-                </tfoot>
                 <tbody>
-                  @foreach ($tags as $tag)
-                      <tr>
-                        <td>{{$loop->iteration}}</td>
-                        <td>{{$tag->tag}}</td>
-                        <td>
-                          <button class="btn btn-warning edit" onclick="edit(this)" data-value="{{$tag->tag}}"><i class="fas fa-edit"></i></button> | 
-                          <button class="btn btn-danger"onclick="destroy(this)" id="{{$tag->tag}}" data-url="{{ route('tags.destroy', $tag->tag) }}" data-id="{{$tag->tag}}"><i class="fas fa-trash"></i></button>
-                        </td>
-                      </tr>
-                  @endforeach
+
                 </tbody>
             </table>
         </div>
     </div>
-</div>
-
-@include('admin.tag._add')
-@include('admin.tag._edit')
+</div>@include('admin.category._add')
+@include('admin.category._edit')
 
 @endsection
 
@@ -64,7 +46,24 @@
   <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
 
   <script>
-      $('#dataTable').DataTable();
+    <!-- Page level plugins -->
+  <script src="vendor/datatables/jquery.dataTables.min.js"></script>
+  <script src="vendor/datatables/dataTables.bootstrap4.min.js"></script>
+
+  <script>
+    $(document).ready(function () {
+      $('#dataTable').DataTable({
+            processing: true,
+            serverSide: true,
+            ajax: '{{ url()->current() }}',
+            columns: [
+                { data: 'DT_RowIndex', name: 'id' },
+                { data: 'category', name: 'category' },
+                { data: 'action', name: 'action' },
+
+            ]
+        });
+    });
 
     function destroy(e) {
       Notiflix.Confirm.show(

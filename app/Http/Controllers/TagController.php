@@ -41,7 +41,8 @@ class TagController extends Controller
         $request->validate(
             [
                 'tag' => 'required|unique:tags,tag'
-            ]
+            ],
+            $this->messages()
         );
 
         Tag::create([
