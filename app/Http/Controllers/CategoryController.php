@@ -22,7 +22,6 @@ class CategoryController extends Controller
             return DataTables::of($categories)
                 ->addIndexColumn()
                 ->addColumn('action', function ($category) {
-                    // return '<a href="' . route('categories.edit', $category->id) . '" class="btn btn-xs btn-warning"><i class="fas fa-edit"></i></a>';
                     return '<button class="btn btn-warning edit" onclick="edit(this)" data-url="' . route('categories.destroy', $category->id) . '" data-value="' . $category->category . '"><i class="fas fa-edit"></i></button> | <button class="btn btn-danger"onclick="destroy(this)" id="' . $category->id . '" data-url="' . route('categories.destroy', $category->id) . '" data-id="' . $category->id . '"><i class="fas fa-trash"></i></button>';
                 })
                 ->make();

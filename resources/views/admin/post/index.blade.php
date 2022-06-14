@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Kategori')
+@section('title', 'Berita')
 
 @section('style')    
     <!-- Custom styles for this page -->
@@ -8,15 +8,14 @@
 
 @section('content')
 
-
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
       <div class="d-flex justify-content-between">
-        <h5 class="m-0 font-weight-bold text-primary">Kategori Post</h5>
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addKategori">
-          Tambah Tag
-        </button>
+        <h5 class="m-0 font-weight-bold text-primary">Berita</h5>
+        <a href="{{route('posts.create')}}" class="btn btn-primary btn-sm">
+          Tambah Berita
+        </a>
       </div>
     </div>
     <div class="card-body">
@@ -25,12 +24,15 @@
                 <thead>
                     <tr>
                         <th>No</th>
+                        <th>Gambar</th>
+                        <th>Judul</th>
                         <th>Kategori</th>
+                        <th>Tag</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-
+                  
                 </tbody>
             </table>
         </div>
@@ -54,9 +56,11 @@
             ajax: '{{ url()->current() }}',
             columns: [
                 { data: 'DT_RowIndex', name: 'id' },
-                { data: 'category', name: 'category' },
-                { data: 'action', name: 'action' },
-
+                { data: 'image', name: 'image',searchable: false,orderable: false},
+                { data: 'title', name: 'title' },
+                { data: 'category_id', name: 'category_id',searchable: false,orderable: false},
+                { data: 'tag_id', name: 'tag_id', searchable: false,orderable: false},
+                { data: 'action', name: 'action', searchable: false, orderable: false},
             ]
         });
     });

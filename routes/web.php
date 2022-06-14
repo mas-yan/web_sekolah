@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,5 +20,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth')->group(function () {
   Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
   Route::resource('/tags', TagController::class)->except(['show', 'edit']);
-  Route::resource('/categories', CategoryController::class);
+  Route::resource('/categories', CategoryController::class)->except(['show', 'edit']);
+  Route::resource('/posts', PostController::class);
 });

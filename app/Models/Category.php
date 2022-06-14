@@ -10,4 +10,14 @@ class Category extends Model
     use HasFactory;
 
     protected $fillable = ['category'];
+
+    public function posts()
+    {
+        return $this->hasMany(Post::class);
+    }
+
+    public function getImageAttribute($image)
+    {
+        return asset('storage/Category/' . $image);
+    }
 }

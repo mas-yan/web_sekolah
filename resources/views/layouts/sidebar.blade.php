@@ -27,18 +27,18 @@
   </div>
 
   <!-- Nav Item - Pages Collapse Menu -->
-  <li class="nav-item {{ request()->is('tags') || request()->is('categories') ? 'active' : '' }}">
+  <li class="nav-item {{ request()->is('tags') || request()->is('categories') || request()->is('posts*')  ? 'active' : '' }}">
       <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseTwo"
           aria-expanded="true" aria-controls="collapseTwo">
           <i class="fas fa-fw fa-file-alt"></i>
-          <span>Content Post</span>
+          <span>Content Berita</span>
       </a>
-      <div id="collapseTwo" class="collapse {{ request()->is('tags') || request()->is('categories') ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
+      <div id="collapseTwo" class="collapse {{ request()->is('tags') || request()->is('categories') || request()->is('posts*')  ? 'show' : '' }}" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
           <div class="bg-white py-2 collapse-inner rounded">
               <h6 class="collapse-header">Post</h6>
               <a class="collapse-item {{request()->is('tags') ? 'active' : '' }}" href="{{route('tags.index')}}">Tag</a>
               <a class="collapse-item {{request()->is('categories') ? 'active' : '' }}" href="{{route('categories.index')}}">Kategori</a>
-              <a class="collapse-item" href="cards.html">Post</a>
+              <a class="collapse-item {{request()->is('posts*')  ? 'active' : '' }}" href="{{route('posts.index')}}">Berita</a>
           </div>
       </div>
   </li>

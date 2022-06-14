@@ -21,7 +21,7 @@ class TagController extends Controller
             return DataTables::of($tags)
                 ->addIndexColumn()
                 ->addColumn('action', function ($tag) {
-                    return '<button class="btn btn-warning edit" onclick="edit(this)" data-url="' . route('tags.update', $tag->tag) . '" data-value="' . $tag->tag . '"><i class="fas fa-edit"></i></button> | <button class="btn btn-danger"onclick="destroy(this)" id="{{$tag->tag}}" data-url="' . route('tags.destroy', $tag->tag) . '" data-id="' . $tag->tag . '"><i class="fas fa-trash"></i></button>';
+                    return '<button class="btn btn-warning edit" onclick="edit(this)" data-url="' . route('tags.update', $tag->id) . '" data-value="' . $tag->tag . '"><i class="fas fa-edit"></i></button> | <button class="btn btn-danger"onclick="destroy(this)" id="{{$tag->id}}" data-url="' . route('tags.destroy', $tag->id) . '" data-id="' . $tag->id . '"><i class="fas fa-trash"></i></button>';
                 })
                 ->make();
         }
