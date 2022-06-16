@@ -46,7 +46,7 @@
   @enderror
 </div>
 <div class="form-group">
-  <label for="image">Gambar</label>
+  <label for="image">Gambar {!! ( isset($require) ? '<span class="text-danger small font-italic">'.$require.'</span>' : '') !!}</label>
   <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
   @error('image')
     <div class="invalid-feedback">

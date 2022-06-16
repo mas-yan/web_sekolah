@@ -16,10 +16,10 @@
     </div>
   </div>
   <div class="card-body">
-    <form action="{{route('posts.update', $post->slug)}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('informations.update', $information->slug)}}" method="POST" enctype="multipart/form-data">
       @csrf
       @method('PUT')
-      @include('admin.post._form',[
+      @include('admin.informations._form',[
         'submit' => 'Edit',
         'require' => 'kosongkan jika tidak ingin diganti'
       ])

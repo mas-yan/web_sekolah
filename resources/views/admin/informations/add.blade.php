@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Edit Berita')
+@section('title', 'Tambah Informasi')
 
 
 @section('style')
@@ -12,16 +12,14 @@
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <div class="d-flex justify-content-between">
-      <h5 class="m-0 font-weight-bold text-primary">Edit Berita</h5>
+      <h5 class="m-0 font-weight-bold text-primary">Tambah Informasi</h5>
     </div>
   </div>
   <div class="card-body">
-    <form action="{{route('posts.update', $post->slug)}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('informations.store')}}" method="POST" enctype="multipart/form-data">
       @csrf
-      @method('PUT')
-      @include('admin.post._form',[
-        'submit' => 'Edit',
-        'require' => 'kosongkan jika tidak ingin diganti'
+      @include('admin.informations._form',[
+        'submit' => 'Tambah'
       ])
     </form>
   </div>
