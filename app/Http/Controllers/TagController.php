@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use Illuminate\Validation\Rule;
-use Yajra\DataTables\Facades\DataTables;
+use Yajra\DataTables\Facades\DataTables as DataTables;
 
 class TagController extends Controller
 {

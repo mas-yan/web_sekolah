@@ -5,25 +5,24 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Information extends Model
+class Image extends Model
 {
     use HasFactory;
 
     protected $fillable = [
-        'title',
-        'slug',
         'description',
+        'image',
+        'title',
+        'slug'
     ];
-
-    protected $table = 'informations';
 
     public function getRouteKeyName()
     {
         return 'slug';
     }
 
-    public function getDateAttribute()
+    public function getImageAttribute($image)
     {
-        return "{$this->created_at->translatedFormat('l, jS F Y')}";
+        return asset('storage/images/' . $image);
     }
 }

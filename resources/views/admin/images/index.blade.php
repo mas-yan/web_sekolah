@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Kategori')
+@section('title', 'Galari Gambar')
 
 @section('style')    
     <!-- Custom styles for this page -->
@@ -8,15 +8,14 @@
 
 @section('content')
 
-
 <!-- DataTales Example -->
 <div class="card shadow mb-4">
     <div class="card-header py-3">
       <div class="d-flex justify-content-between">
-        <h5 class="m-0 font-weight-bold text-primary">Kategori Post</h5>
-        <button type="button" class="btn btn-primary btn-sm" data-toggle="modal" data-target="#addKategori">
-          Tambah Kategori
-        </button>
+        <h5 class="m-0 font-weight-bold text-primary">Galari Gambar</h5>
+        <a href="{{route('images.create')}}" class="btn btn-primary btn-sm">
+          Tambah Galari Gambar
+        </a>
       </div>
     </div>
     <div class="card-body">
@@ -25,20 +24,18 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Kategori</th>
+                        <th>Judul</th>
+                        <th>gambar</th>
                         <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
-
+                  
                 </tbody>
             </table>
         </div>
     </div>
 </div>
-@include('admin.category._add')
-@include('admin.category._edit')
-
 @endsection
 
 @section('script')
@@ -54,9 +51,9 @@
             ajax: '{{ url()->current() }}',
             columns: [
                 { data: 'DT_RowIndex', name: 'id' },
-                { data: 'category', name: 'category' },
-                { data: 'action', name: 'action' },
-
+                { data: 'title', name: 'title' },
+                { data: 'image', name: 'image', searchable: false,orderable: false},
+                { data: 'action', name: 'action', searchable: false, orderable: false},
             ]
         });
     });
@@ -92,7 +89,7 @@
                     }else{
                       Notiflix.Report.failure(
                           'Error',
-                          'Gagal Dihapus kategori digunakan dalam berita',
+                          'Gagal Dihapus',
                           'Okay',
                       );
                     }
@@ -103,5 +100,4 @@
     }
 
     </script>
-    @stack('script')
 @endsection

@@ -55,29 +55,19 @@
 
   <!-- Heading -->
   <div class="sidebar-heading">
-      Addons
+      Galeri
   </div>
 
   <!-- Nav Item - Pages Collapse Menu -->
-  <li class="nav-item">
-      <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages" aria-expanded="true"
-          aria-controls="collapsePages">
-          <i class="fas fa-fw fa-folder"></i>
-          <span>Pages</span>
-      </a>
-      <div id="collapsePages" class="collapse" aria-labelledby="headingPages"
-          data-parent="#accordionSidebar">
-          <div class="bg-white py-2 collapse-inner rounded">
-              <h6 class="collapse-header">Login Screens:</h6>
-              <a class="collapse-item" href="login.html">Login</a>
-              <a class="collapse-item" href="register.html">Register</a>
-              <a class="collapse-item" href="forgot-password.html">Forgot Password</a>
-              <div class="collapse-divider"></div>
-              <h6 class="collapse-header">Other Pages:</h6>
-              <a class="collapse-item" href="404.html">404 Page</a>
-              <a class="collapse-item" href="blank.html">Blank Page</a>
-          </div>
-      </div>
+  <li class="nav-item {{ request()->is('admin/images*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{route('images.index')}}">
+        <i class="fas fa-fw fa-images"></i>
+        <span>Gambar</span></a>
+  </li>
+  <li class="nav-item {{ request()->is('admin/images*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{route('images.index')}}">
+        <i class="fas fa-fw fa-video"></i>
+        <span>Video</span></a>
   </li>
 
   <!-- Nav Item - Charts -->

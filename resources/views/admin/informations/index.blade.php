@@ -25,7 +25,6 @@
                     <tr>
                         <th>No</th>
                         <th>Judul</th>
-                        <th>Deskripsi</th>
                         <th>Tanggal</th>
                         <th>Action</th>
                     </tr>
@@ -37,9 +36,6 @@
         </div>
     </div>
 </div>
-@include('admin.category._add')
-@include('admin.category._edit')
-
 @endsection
 
 @section('script')
@@ -56,7 +52,6 @@
             columns: [
                 { data: 'DT_RowIndex', name: 'id' },
                 { data: 'title', name: 'title' },
-                { data: 'description', name: 'description',searchable: false,orderable: false},
                 { data: 'tanggal', name: 'tanggal', searchable: false,orderable: false},
                 { data: 'action', name: 'action', searchable: false, orderable: false},
             ]

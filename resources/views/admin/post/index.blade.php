@@ -38,9 +38,6 @@
         </div>
     </div>
 </div>
-@include('admin.category._add')
-@include('admin.category._edit')
-
 @endsection
 
 @section('script')

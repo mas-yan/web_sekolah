@@ -4,11 +4,13 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\InformationRequest;
 use App\Models\Information;
-use Illuminate\Http\Request;
-use Yajra\DataTables\Facades\DataTables;
+use Yajra\DataTables\Facades\DataTables as DataTables;
+use App\Traits\HasImage;
+use Illuminate\Support\Facades\Storage;
 
 class InformationController extends Controller
 {
+    use HasImage;
     /**
      * Display a listing of the resource.
      *
@@ -54,7 +56,7 @@ class InformationController extends Controller
         Information::create([
             'title' => $request->title,
             'slug' => str()->slug(($request->title)),
-            'description' => $request->description,
+            'description' => $this->articleImage($request->description),
         ]);
         return redirect()->route('informations.index')->with('success', 'Data berhasil ditambahkan');
     }
@@ -107,6 +109,16 @@ class InformationController extends Controller
      */
     public function destroy(Information $information)
     {
+        $description = $information->description;
+        $dom = new \DomDocument();
+        @$dom->loadHtml($description, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+        $images = $dom->getElementsByTagName('img');
+
+        // foreach image
+        foreach ($images as $k => $img) {
+            $data = $img->getAttribute('src');
+            Storage::disk('local')->delete('public/upload/' . basename($data));
+        }
         $information->delete();
     }
 }

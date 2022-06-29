@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ImageController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\TagController;
@@ -29,5 +30,6 @@ Route::prefix('admin')->group(function () {
     Route::resource('/categories', CategoryController::class)->except(['show', 'edit']);
     Route::resource('/posts', PostController::class)->except(['show']);
     Route::resource('/informations', InformationController::class)->except(['show']);
+    Route::resource('/images', ImageController::class)->except(['show']);
   });
 });

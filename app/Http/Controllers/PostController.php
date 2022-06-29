@@ -6,8 +6,7 @@ use App\Http\Requests\PostRequest;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\Tag;
-use Illuminate\Http\Request;
-use Yajra\DataTables\Facades\DataTables;
+use Yajra\DataTables\Facades\DataTables as DataTables;
 use App\Traits\HasImage;
 use Illuminate\Support\Facades\Storage;
 
@@ -114,11 +113,17 @@ class PostController extends Controller
      */
     public function update(PostRequest $request, Post $post)
     {
-        $image = $request->file('image') ? $this->uploadImage($request, 'public/posts/')->hashName() : $post->image;
-        $post->updated([
+        if ($request->file('image')) {
+            Storage::disk('local')->delete('public/posts/' . basename($post->image));
+            $image = $this->uploadImage($request, 'public/posts/')->hashName();
+        } else {
+            $image = basename($post->image);
+        }
+
+        $post->update([
             'user_id' => auth()->user()->id,
             'category_id' => $request->category,
-            'article' => $this->articleImage($request->article),
+            'article' => $request->article,
             'description' => $request->description,
             'image' => $image,
             'title' => $request->title,
@@ -126,7 +131,7 @@ class PostController extends Controller
         ]);
 
         $post->tags()->sync($request->tag);
-        return redirect()->route('posts.index')->with('success', 'Berita Berhasil Ditambahkan');
+        return redirect()->route('posts.index')->with('success', 'Berita Berhasil Di Update');
     }
 
     /**
