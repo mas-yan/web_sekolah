@@ -38,7 +38,7 @@ class Post extends Model
 
     public function getDateAttribute()
     {
-        return "{$this->created_at->translatedFormat('l, jS F Y')}";
+        return "{$this->created_at->translatedFormat('d-F-Y')}";
     }
 
     public function getImageAttribute($image)

@@ -44,7 +44,7 @@
       </button>
     <div class="collapse navbar-collapse pt-3 pt-lg-1" id="navbarNavAltMarkup">
       <div class="navbar-nav">
-        <a class="nav-link pl-3 pl-lg-2 active" href="#">Home <span class="sr-only">(current)</span></a>
+        <a class="nav-link pl-3 pl-lg-2 {{ request()->is('/') ? 'active' : '' }}" href="/">Home <span class="sr-only">(current)</span></a>
         <a class="nav-link pl-3 pl-lg-2" href="#">Features</a>
         <a class="nav-link pl-3 pl-lg-2" href="#">Pricing</a>
         <li class="nav-item dropdown">
