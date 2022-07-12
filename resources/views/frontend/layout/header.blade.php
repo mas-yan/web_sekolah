@@ -40,11 +40,6 @@
             top: 0px !important; /* required */
             z-index: 9999;
         }
-        
-        .nav-link:hover{
-            background-color: #f7c23e !important;
-            border-radius: 10px !important;
-        }
          
         .active{
             background-color: #f7c23e !important;
@@ -53,10 +48,6 @@
 
         @media (min-width: 992px) { 
             .active{
-                background-color: #f7c23e !important;
-                border-radius: 10px 10px 0px 0px !important;
-            }
-            .nav-link:hover{
                 background-color: #f7c23e !important;
                 border-radius: 10px 10px 0px 0px !important;
             }

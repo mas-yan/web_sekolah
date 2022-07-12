@@ -30,6 +30,6 @@ Route::prefix('admin')->group(function () {
     Route::resource('/categories', CategoryController::class)->except(['show', 'edit']);
     Route::resource('/posts', PostController::class)->except(['show']);
     Route::resource('/informations', InformationController::class)->except(['show']);
-    Route::resource('/images', ImageController::class)->except(['show']);
+    Route::resource('/images', ImageController::class)->except(['show', 'edit', 'update']);
   });
 });

@@ -3,10 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ImageRequest;
+use App\Models\GaleryImage;
 use App\Models\Image;
 use Illuminate\Http\Request;
 use Yajra\DataTables\Facades\DataTables as DataTables;
 use App\Traits\HasImage;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Storage;
 
 class ImageController extends Controller
@@ -27,7 +29,7 @@ class ImageController extends Controller
                     return '<img src="' . $posts->image . '" alt="image" class="rounded" width="50px">';
                 })
                 ->addColumn('action', function ($image) {
-                    return '<a href="' . route("images.edit", $image->slug) . '" class="btn btn-warning"><i class="fas fa-edit"></i></a> | <button class="btn btn-danger"onclick="destroy(this)" id="' . $image->slug . '" data-url="' . route('images.destroy', $image->slug) . '" data-id="' . $image->slug . '"><i class="fas fa-trash"></i></button>';
+                    return '<button class="btn btn-danger"onclick="destroy(this)" id="' . $image->slug . '" data-url="' . route('images.destroy', $image->slug) . '" data-id="' . $image->slug . '"><i class="fas fa-trash"></i></button>';
                 })
                 ->rawColumns(['action', 'image'])
                 ->make();
@@ -54,12 +56,28 @@ class ImageController extends Controller
      */
     public function store(ImageRequest $request)
     {
-        Image::create([
-            'description' => $this->articleImage($request->description),
-            'image' => $this->uploadImage($request, 'public/images/')->hashName(),
-            'title' => $request->title,
-            'slug' => str()->slug($request->title)
-        ]);
+        try {
+            DB::beginTransaction();
+
+            $image = Image::create([
+                'description' => $this->articleImage($request->description),
+                'title' => $request->title,
+                'image' => $this->uploadImage($request, 'public/images/')->hashName(),
+                'slug' => str()->slug($request->title)
+            ]);
+
+            foreach ($request->file('images') as $imagefile) {
+                GaleryImage::create([
+                    'image_id' => $image->id,
+                    'image' => $imagefile->storeAs('public/images/', $imagefile->hashName())
+                ]);
+            }
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
+        }
 
         return redirect()->route('images.index')->with('success', 'Galeri Gambar Berhasil Ditambahkan');
     }
@@ -120,18 +138,34 @@ class ImageController extends Controller
      */
     public function destroy(Image $image)
     {
-        $description = $image->description;
-        $dom = new \DomDocument();
-        @$dom->loadHtml($description, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
-        $images = $dom->getElementsByTagName('img');
+        try {
+            DB::beginTransaction();
 
-        // foreach image
-        foreach ($images as $k => $img) {
-            $data = $img->getAttribute('src');
-            Storage::disk('local')->delete('public/upload/' . basename($data));
+            $description = $image->description;
+            $dom = new \DomDocument();
+            @$dom->loadHtml($description, LIBXML_HTML_NOIMPLIED | LIBXML_HTML_NODEFDTD);
+            $images = $dom->getElementsByTagName('img');
+
+            // foreach image
+            foreach ($images as $k => $img) {
+                $data = $img->getAttribute('src');
+                Storage::disk('local')->delete('public/upload/' . basename($data));
+            }
+            $galery = GaleryImage::where('image_id', $image->id)->get();
+
+            foreach ($galery as $value) {
+                $id = $value->id;
+                Storage::disk('local')->delete('public/images/' . basename($value->image));
+                GaleryImage::where('id', $id)->delete();
+            }
+
+            Storage::disk('local')->delete('public/images/' . basename($image->image));
+            $image->delete();
+
+            DB::commit();
+        } catch (\Exception $e) {
+            DB::rollBack();
+            throw $e;
         }
-
-        Storage::disk('local')->delete('public/images/' . basename($image->image));
-        $image->delete();
     }
 }

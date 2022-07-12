@@ -1,8 +1,17 @@
 <input type="hidden" name="id" value="{{old('title', $image->id)}}">
 <div class="form-group">
-  <label for="image">Gambar {!! ( isset($require) ? '<span class="text-danger small font-italic">'.$require.'</span>' : '') !!}</label>
+  <label for="image">Gambar sampul {!! ( isset($require) ? '<span class="text-danger small font-italic">'.$require.'</span>' : '') !!}</label>
   <input type="file" class="form-control @error('image') is-invalid @enderror" id="image" name="image">
   @error('image')
+    <div class="invalid-feedback">
+      {{ $message }}
+    </div>
+  @enderror
+</div>
+<div class="form-group">
+  <label for="images">Isi galeri</label>
+  <input type="file" class="form-control @error('images') is-invalid @enderror" multiple id="images" name="images[]">
+  @error('images')
     <div class="invalid-feedback">
       {{ $message }}
     </div>

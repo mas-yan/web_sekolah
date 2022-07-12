@@ -64,11 +64,6 @@
         <i class="fas fa-fw fa-images"></i>
         <span>Gambar</span></a>
   </li>
-  <li class="nav-item {{ request()->is('admin/images*') ? 'active' : '' }}">
-    <a class="nav-link" href="{{route('images.index')}}">
-        <i class="fas fa-fw fa-video"></i>
-        <span>Video</span></a>
-  </li>
 
   <!-- Nav Item - Charts -->
   <li class="nav-item">

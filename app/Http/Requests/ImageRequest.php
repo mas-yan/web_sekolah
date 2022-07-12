@@ -29,7 +29,7 @@ class ImageRequest extends FormRequest
         $rules =  [
             'title' => ['required'],
             'description' => ['required'],
-            'image' => 'image|mimes:png,jpg,jpeg|max:2048',
+            'image' => 'mimes:png,jpg,jpeg|max:2048',
         ];
 
         if ($this->method() == 'POST') {
