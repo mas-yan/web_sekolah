@@ -21,6 +21,12 @@ class Image extends Model
         return 'slug';
     }
 
+    public function galery()
+    {
+        return $this->hasMany(GaleryImage::class);
+    }
+
+
     public function getImageAttribute($image)
     {
         return asset('storage/images/' . $image);

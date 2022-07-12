@@ -29,7 +29,7 @@ class ImageController extends Controller
                     return '<img src="' . $posts->image . '" alt="image" class="rounded" width="50px">';
                 })
                 ->addColumn('action', function ($image) {
-                    return '<button class="btn btn-danger"onclick="destroy(this)" id="' . $image->slug . '" data-url="' . route('images.destroy', $image->slug) . '" data-id="' . $image->slug . '"><i class="fas fa-trash"></i></button>';
+                    return '<a href="' . route("images.show", $image->slug) . '" class="btn btn-success"><i class="fas fa-eye"></i></a> | <button class="btn btn-danger"onclick="destroy(this)" id="' . $image->slug . '" data-url="' . route('images.destroy', $image->slug) . '" data-id="' . $image->slug . '"><i class="fas fa-trash"></i></button>';
                 })
                 ->rawColumns(['action', 'image'])
                 ->make();
@@ -67,9 +67,10 @@ class ImageController extends Controller
             ]);
 
             foreach ($request->file('images') as $imagefile) {
+                $imagefile->storeAs('public/images/', $imagefile->hashName());
                 GaleryImage::create([
                     'image_id' => $image->id,
-                    'image' => $imagefile->storeAs('public/images/', $imagefile->hashName())
+                    'image' => $imagefile->hashName()
                 ]);
             }
 
@@ -90,7 +91,7 @@ class ImageController extends Controller
      */
     public function show(Image $image)
     {
-        //
+        return view('admin.images.show', compact('image'));
     }
 
     /**

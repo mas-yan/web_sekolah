@@ -13,6 +13,11 @@ class GaleryImage extends Model
         'image',
     ];
 
+    public function image()
+    {
+        return $this->belongsToMany(Image::class);
+    }
+
     public function getImageAttribute($image)
     {
         return asset('storage/images/' . $image);

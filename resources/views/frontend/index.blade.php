@@ -54,7 +54,8 @@
           </div>
         </div>
         @endforelse
-      </div>{{ $posts->links() }}
+      </div>
+      {{-- {{ $posts->links() }} --}}
     </div>
     
     <div class="col-12 col-lg-4">
