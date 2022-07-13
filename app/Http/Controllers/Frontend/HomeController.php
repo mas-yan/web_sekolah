@@ -14,12 +14,17 @@ class HomeController extends Controller
     {
         $posts = Post::latest()->take('3')->get();
         $informations = Information::latest()->take('3')->get();
-        // $galerys = Image::latest()->take('3')->get();
-        return view('frontend.index', compact('posts', 'informations'));
+        $galery = Image::latest()->take('2')->get();
+        return view('frontend.index', compact('posts', 'informations', 'galery'));
     }
 
     public function show(Post $post)
     {
         return view('frontend.show', compact('post'));
+    }
+
+    public function galery(Image $image)
+    {
+        return view('frontend.galery.show', compact('image'));
     }
 }

@@ -22,6 +22,7 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('article/{post}', [HomeController::class, 'show'])->name('home.show');
+Route::get('galery/{image}', [HomeController::class, 'galery'])->name('home.galery');
 
 Route::prefix('admin')->group(function () {
   Route::middleware('auth')->group(function () {

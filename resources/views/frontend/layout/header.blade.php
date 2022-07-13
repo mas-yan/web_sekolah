@@ -38,7 +38,7 @@
             position: sticky !important;
             position: -webkit-sticky !important;
             top: 0px !important; /* required */
-            z-index: 9999;
+            z-index: 9;
         }
          
         .active{
@@ -58,7 +58,7 @@
 
 </head>
 
-<body id="page-top" style="background: rgb(226, 232, 240);">
+<body id="page-top">
 
     <!-- Page Wrapper -->
-    {{-- <div id="wrapper"> --}}
+    <div id="wrapper">

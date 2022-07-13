@@ -1,5 +1,24 @@
 @extends('frontend.layout.master')
 
+@section('style')
+<style>
+.txt{
+  display: -webkit-box;
+  max-height: 5rem;
+  max-width: 100%;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+  @media (min-width: 992px) { 
+    .galery{
+      min-width: 400px;
+    }
+  }
+</style>
+@endsection
+
 @section('content')
 <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
   <div class="carousel-inner">
@@ -24,59 +43,92 @@
 </div>
 <!-- Begin Page Content -->
 <div class="container-fluid">
-  <div class="mt-3"></div>
+  <div class="mt-4"></div>
   <div class="row">
-    <div class="col-12 col-lg-8 mb-3">
-      <h3 class="text-dark">
-        <i class="fas fa-file-alt"></i>
-        Berita Terbaru
-      </h3>
-      <hr class="mt-0">
+    <div class="col-md-8">
       <div class="row">
-        @forelse ($posts as $post)
-        <div class="col-12 col-md-4 mb-3">
-          <a href="article/{{$post->slug}}" class="card text-decoration-none shadow">
-            <img src="{{$post->image}}" class="card-img-top" alt="image">
-            <div class="card-body">
-              <h5 class="card-title text-dark">{{$post->title}}</h5>
-              <p class="card-text text-muted">{{$post->description}}</p>
-            </div>
-            <div class="card-footer bg-white text-dark">
-              <i class="fa fa-calendar"></i>
-              {{$post->date}}
-            </div>
-          </a>
+        <div class="col-md-12 mb-3">
+          <h4><i class="fas fa-file-alt"></i> BERITA TERBARU</h4>
         </div>
-          @empty
-          <div class="card">
-          <div class="card-body alert-danger">
-            Belum ada berita terbaru
+        <div class="row">
+          @forelse ($posts as $post)
+            <div class="col-md-4 mb-4">
+              <a href="article/{{$post->slug}}" class="card shadow-sm border-0 rounded-lg text-decoration-none">
+                <img src="{{$post->image}}" class="card-img-top" alt="image">
+                <div class="card-body">
+                  <h5 class="card-title text-dark">{{$post->title}}</h5>
+                  <p class="card-text text-muted txt">{{$post->description}}</p>
+                </div>
+                <div class="card-footer bg-white text-dark">
+                  <i class="fa fa-calendar"></i>
+                  {{$post->date}}
+                </div>
+              </a>
+            </div>
+            @empty
+            <div class="card">
+              <div class="card-body alert-danger">
+                Belum ada berita terbaru
+              </div>
+            </div>
+            @endforelse
+          </div>
+          <div class="col-md-12 mb-3 mt-4">
+            <h4><i class="fas fa-video"></i> GALERI TERBARU</h4>
+          </div>
+          <div class="row">
+            @foreach ($galery as $value)
+              <div class="col-md-6 mb-4">
+                <a href="{{route('home.galery', $value->slug)}}" class="card bg-secondary text-decoration-none text-white h-100 shadow-sm border-0 galery rounded-lg">
+                  <div class="card-img">
+                    <img src="{{$value->image}}" class="w-100" style="width: 100%; height: 200px; border-top-left-radius: 0.3rem; border-top-right-radius: 0.3rem;">
+                  </div>
+                  <div class="card-body text-center">
+                    <h6 class="">{{$value->title}}</h6>
+                  </div>
+                </a>
+              </div>
+            @endforeach
           </div>
         </div>
-        @endforelse
       </div>
-      {{-- {{ $posts->links() }} --}}
-    </div>
-    
-    <div class="col-12 col-lg-4">
-      <h3 class="text-dark">
-        <i class="fas fa-info-circle"></i>
-        Papan Informasi
-      </h3>
-      <hr class="mt-0">
-      @foreach ($informations as $information)
-        <div class="card mb-3 shadow-sm border-0">
-          <div class="card-body">
-            <h6>{{$information->title}}</h6>
-            <hr>
-            <div>{!!$information->description!!}
-            </div>
-            <div class="mt-2">
-              <i aria-hidden="true" class="fa fa-calendar"></i> {{$information->date}}
-            </div>
-          </div>
+      <div class="col-md-4">
+        <div class="title mb-4"><h4>
+          <i aria-hidden="true" class="fas fa-info-circle"></i> INFORMASI TERBARU</h4>
         </div>
-      @endforeach
+        <div>
+          {{-- <div class="list-group"> --}}
+            @foreach ($informations as $information)
+            <div class="alert alert-info shadow-sm mb-2 rounded">
+              <a href="/category/belajar" class="text-decoration-none text-dark">
+                <h5 class="d-inline-block text-truncate m-0 p-0" style="max-width: 300px;">
+                  <i aria-hidden="true" class="fas fa-info-circle"></i> {{$information->title}}
+                </h5>
+                <hr class="mt-0 mb-2">
+                <span class="txt">{!!$information->description!!}</span>
+              </a>
+            </div>
+            @endforeach
+          {{-- </div> --}}
+        </div>
+        <div class="title mb-3 mt-5">
+          <h4><i aria-hidden="true" class="fa fa-calendar"></i> AGENDA KEGIATAN</h4>
+        </div>
+        <div>
+          @foreach ($informations as $information)
+            <div class="card mb-3 shadow-sm border-0">
+              <div class="card-body">
+                <h6>{{$information->title}}</h6>
+                <hr>
+                <div>{!!$information->description!!}</div>
+                <div class="mt-2">
+                  <i aria-hidden="true" class="fa fa-calendar"></i> {{$information->date}}
+                </div>
+              </div>
+            </div>
+          @endforeach
+        </div>
+      </div>
     </div>
   </div>
 </div>
