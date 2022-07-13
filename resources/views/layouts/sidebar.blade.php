@@ -49,6 +49,11 @@
         <i class="fas fa-fw fa-info-circle"></i>
         <span>Informasi</span></a>
   </li>
+  <li class="nav-item {{ request()->is('admin/activities*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{route('activities.index')}}">
+        <i class="fas fa-fw fa fa-calendar"></i>
+        <span>Agenda kegiatan</span></a>
+  </li>
 
   <!-- Divider -->
   <hr class="sidebar-divider">

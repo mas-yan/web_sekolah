@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Edit Informasi')
+@section('title', 'Edit Agenda Kegiatan')
 
 
 @section('style')
@@ -12,14 +12,14 @@
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <div class="d-flex justify-content-between">
-      <h5 class="m-0 font-weight-bold text-primary">Edit Informasi</h5>
+      <h5 class="m-0 font-weight-bold text-primary">Edit Agenda Kegiatan</h5>
     </div>
   </div>
   <div class="card-body">
-    <form action="{{route('informations.update', $information->slug)}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('activities.update', $activity->slug)}}" method="POST" enctype="multipart/form-data">
       @csrf
       @method('PUT')
-      @include('admin.informations._form',[
+      @include('admin.activities._form',[
         'submit' => 'Edit',
       ])
     </form>

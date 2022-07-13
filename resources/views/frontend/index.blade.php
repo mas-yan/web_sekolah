@@ -49,9 +49,10 @@
       <div class="row">
         <div class="col-md-12 mb-3">
           <h4><i class="fas fa-file-alt"></i> BERITA TERBARU</h4>
+          <hr>
         </div>
         <div class="row">
-          @forelse ($posts as $post)
+          @foreach ($posts as $post)
             <div class="col-md-4 mb-4">
               <a href="article/{{$post->slug}}" class="card shadow-sm border-0 rounded-lg text-decoration-none">
                 <img src="{{$post->image}}" class="card-img-top" alt="image">
@@ -65,16 +66,11 @@
                 </div>
               </a>
             </div>
-            @empty
-            <div class="card">
-              <div class="card-body alert-danger">
-                Belum ada berita terbaru
-              </div>
-            </div>
-            @endforelse
+            @endforeach
           </div>
           <div class="col-md-12 mb-3 mt-4">
             <h4><i class="fas fa-video"></i> GALERI TERBARU</h4>
+            <hr>
           </div>
           <div class="row">
             @foreach ($galery as $value)
@@ -95,6 +91,7 @@
       <div class="col-md-4">
         <div class="title mb-4"><h4>
           <i aria-hidden="true" class="fas fa-info-circle"></i> INFORMASI TERBARU</h4>
+          <hr>
         </div>
         <div>
           {{-- <div class="list-group"> --}}
@@ -113,19 +110,20 @@
         </div>
         <div class="title mb-3 mt-5">
           <h4><i aria-hidden="true" class="fa fa-calendar"></i> AGENDA KEGIATAN</h4>
+          <hr>
         </div>
         <div>
-          @foreach ($informations as $information)
-            <div class="card mb-3 shadow-sm border-0">
+          @foreach ($activities as $activity)
+            <a href="{{route('home.activity.show', $activity->slug)}}" class="card text-decoration-none text-dark mb-3 shadow-sm border-0">
               <div class="card-body">
-                <h6>{{$information->title}}</h6>
+                <h6>{{$activity->title}}</h6>
                 <hr>
-                <div>{!!$information->description!!}</div>
+                <div class="txt">{!!$activity->description!!}</div>
                 <div class="mt-2">
-                  <i aria-hidden="true" class="fa fa-calendar"></i> {{$information->date}}
+                  <i aria-hidden="true" class="fa fa-calendar"></i> {{$activity->tgl}}
                 </div>
               </div>
-            </div>
+            </a>
           @endforeach
         </div>
       </div>

@@ -9,7 +9,7 @@
   @enderror
 </div>
 <div class="form-group">
-  <label for="images">Isi galeri</label>
+  <label for="images">Isi galeri <small class="text-danger">Pilih Beberapa gambar</small> </label>
   <input type="file" class="form-control @error('images') is-invalid @enderror" multiple id="images" name="images[]">
   @error('images')
     <div class="invalid-feedback">
