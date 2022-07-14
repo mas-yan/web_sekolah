@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Edit Berita')
+@section('title', 'Edit Jurusan')
 
 
 @section('style')
@@ -12,14 +12,14 @@
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <div class="d-flex justify-content-between">
-      <h5 class="m-0 font-weight-bold text-primary">Edit Berita</h5>
+      <h5 class="m-0 font-weight-bold text-primary">Edit Jurusan</h5>
     </div>
   </div>
   <div class="card-body">
-    <form action="{{route('posts.update', $post->slug)}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('jurusan.update', $jurusan->slug)}}" method="POST" enctype="multipart/form-data">
       @csrf
       @method('PUT')
-      @include('admin.post._form',[
+      @include('admin.jurusan._form',[
         'submit' => 'Edit',
         'require' => 'kosongkan jika tidak ingin diganti'
       ])

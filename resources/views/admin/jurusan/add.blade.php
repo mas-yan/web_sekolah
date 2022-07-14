@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Berita')
+@section('title', 'Jurusan')
 
 
 @section('style')
@@ -12,13 +12,13 @@
 <div class="card shadow mb-4">
   <div class="card-header py-3">
     <div class="d-flex justify-content-between">
-      <h5 class="m-0 font-weight-bold text-primary">Tambah Berita</h5>
+      <h5 class="m-0 font-weight-bold text-primary">Tambah Jurusan</h5>
     </div>
   </div>
   <div class="card-body">
-    <form action="{{route('posts.store')}}" method="POST" enctype="multipart/form-data">
+    <form action="{{route('jurusan.store')}}" method="POST" enctype="multipart/form-data">
       @csrf
-      @include('admin.post._form',[
+      @include('admin.jurusan._form',[
         'submit' => 'Tambah'
       ])
     </form>

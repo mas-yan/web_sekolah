@@ -69,12 +69,19 @@
         <i class="fas fa-fw fa-images"></i>
         <span>Gambar</span></a>
   </li>
+    <!-- Divider -->
+    <hr class="sidebar-divider">
+
+    <!-- Heading -->
+    <div class="sidebar-heading">
+        Sekolah
+    </div>
 
   <!-- Nav Item - Charts -->
-  <li class="nav-item">
-      <a class="nav-link" href="charts.html">
-          <i class="fas fa-fw fa-chart-area"></i>
-          <span>Charts</span></a>
+  <li class="nav-item {{ request()->is('admin/jurusan*') ? 'active' : '' }}">
+      <a class="nav-link" href="{{route('jurusan.index')}}">
+          <i class="fas fa-fw fa-graduation-cap"></i>
+          <span>Jurusan</span></a>
   </li>
 
   <!-- Nav Item - Tables -->

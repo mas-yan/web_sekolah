@@ -11,7 +11,7 @@
 <div class="form-group">
   <label for="description">Isi Informasi</label>
   <textarea class="form-control @error('description') is-invalid @enderror" id="summernote" name="description" rows="3">{{old('description', $information->description)}}</textarea>
-  @error('description', $information->information)
+  @error('description', $information->description)
     <div class="invalid-feedback">
       {{ $message }}
     </div>

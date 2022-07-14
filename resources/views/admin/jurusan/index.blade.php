@@ -1,5 +1,5 @@
 @extends('layouts.master')
-@section('title', 'Berita')
+@section('title', 'Jurusan')
 
 @section('style')    
     <!-- Custom styles for this page -->
@@ -12,9 +12,9 @@
 <div class="card shadow mb-4">
     <div class="card-header py-3">
       <div class="d-flex justify-content-between">
-        <h5 class="m-0 font-weight-bold text-primary">Berita</h5>
-        <a href="{{route('posts.create')}}" class="btn btn-primary btn-sm">
-          Tambah Berita
+        <h5 class="m-0 font-weight-bold text-primary">Jurusan</h5>
+        <a href="{{route('jurusan.create')}}" class="btn btn-primary btn-sm">
+          Tambah Jurusan
         </a>
       </div>
     </div>
@@ -24,10 +24,7 @@
                 <thead>
                     <tr>
                         <th>No</th>
-                        <th>Gambar</th>
-                        <th>Judul</th>
-                        <th>Kategori</th>
-                        <th>Tag</th>
+                        <th>Title</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -53,10 +50,7 @@
             ajax: '{{ url()->current() }}',
             columns: [
                 { data: 'DT_RowIndex', name: 'id' },
-                { data: 'image', name: 'image',searchable: false,orderable: false},
                 { data: 'title', name: 'title' },
-                { data: 'category_id', name: 'category_id',searchable: false,orderable: false},
-                { data: 'tag_id', name: 'tag_id', searchable: false,orderable: false},
                 { data: 'action', name: 'action', searchable: false, orderable: false},
             ]
         });

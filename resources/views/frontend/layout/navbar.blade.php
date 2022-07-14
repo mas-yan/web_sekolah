@@ -50,13 +50,13 @@
         <a class="nav-link pl-3 pl-lg-2 {{ request()->is('galery*') ? 'active' : '' }}" href="{{route('galery.index')}}">Galery</a>
         <a class="nav-link pl-3 pl-lg-2 {{ request()->is('activities*') ? 'active' : '' }}" href="{{route('home.activity.index')}}">Agenda kegiatan</a>
         <li class="nav-item dropdown">
-          <a class="nav-link pl-3 pl-lg-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
+          <a class="nav-link pl-3 pl-lg-2 dropdown-toggle {{ request()->is('jurusan*') ? 'active' : '' }}" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
             Jurusan
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Action</a>
-            <a class="dropdown-item" href="#">Another action</a>
-            <a class="dropdown-item" href="#">Something else here</a>
+            @foreach (App\Models\Jurusan::jurusan() as $jurusan)
+              <a class="dropdown-item {{ request()->is('jurusan/*'.$jurusan->slug) ? 'active' : '' }}" href="{{route('jurusan', $jurusan->slug)}}">{{$jurusan->title}}</a>
+            @endforeach
           </div>
         </li>
       </div>

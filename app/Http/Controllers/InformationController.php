@@ -80,7 +80,6 @@ class InformationController extends Controller
      */
     public function edit(Information $information)
     {
-
         return view('admin.informations.edit', compact('information'));
     }
 
