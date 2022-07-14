@@ -9,7 +9,7 @@
   <hr>
   @foreach ($activities as $activity)
     <div class="card mb-3">
-      <a href="{{route('home.activity.index')}}" class="card-body text-decoration-none text-dark">
+      <a href="{{route('home.activity.show', $activity->slug)}}" class="card-body text-decoration-none text-dark">
           <h4 class="text-primary">{{$activity->title}}</h4>
           <i aria-hidden="true" class="fa fa-calendar"></i> {{$activity->tgl}}
           <hr class="my-0">
@@ -18,7 +18,7 @@
           </div>
       </a>
     </div>
+    @endforeach
     {{ $activities->links() }}
-  @endforeach
 </div>
 @endsection

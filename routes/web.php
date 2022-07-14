@@ -6,6 +6,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Frontend\ActivityController as FrontendActivityController;
 use App\Http\Controllers\Frontend\galeryController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\InformationController as FrontendInformationController;
 use App\Http\Controllers\Frontend\PostController as FrontendPostController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\InformationController;
@@ -25,6 +26,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('informations', [FrontendInformationController::class, 'index'])->name('information.index');
+Route::get('informations/{information}', [FrontendInformationController::class, 'show'])->name('information.show');
 Route::get('article', [FrontendPostController::class, 'index'])->name('home.index');
 Route::get('article/{post}', [FrontendPostController::class, 'show'])->name('home.show');
 Route::get('galery', [galeryController::class, 'index'])->name('galery.index');
