@@ -21,6 +21,7 @@
                 <!-- /.container-fluid -->
 
             </div>
+            </div>
             <!-- End of Main Content -->
 
         {{-- </div> --}}
@@ -29,6 +30,8 @@
     <a class="scroll-to-top rounded" href="#page-top">
         <i class="fas fa-angle-up"></i>
     </a>
+
+    @include('frontend.layout.footer')
 
     <!-- Logout Modal-->
     {{-- <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"

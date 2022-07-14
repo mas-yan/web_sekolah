@@ -55,10 +55,17 @@
             overflow: hidden;
         }
 
+        .map{
+            height: 200px;
+        }
+        
         @media (min-width: 992px) { 
             .active{
                 background-color: #f7c23e !important;
                 border-radius: 10px 10px 0px 0px !important;
+            }
+            .map{
+            height:400px;
             }
         }
     </style>
