@@ -4,7 +4,9 @@ use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Frontend\ActivityController as FrontendActivityController;
+use App\Http\Controllers\Frontend\galeryController;
 use App\Http\Controllers\Frontend\HomeController;
+use App\Http\Controllers\Frontend\PostController as FrontendPostController;
 use App\Http\Controllers\ImageController;
 use App\Http\Controllers\InformationController;
 use App\Http\Controllers\PostController;
@@ -23,8 +25,10 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class, 'index'])->name('home');
-Route::get('article/{post}', [HomeController::class, 'show'])->name('home.show');
-Route::get('galery/{image}', [HomeController::class, 'galery'])->name('home.galery');
+Route::get('article', [FrontendPostController::class, 'index'])->name('home.index');
+Route::get('article/{post}', [FrontendPostController::class, 'show'])->name('home.show');
+Route::get('galery', [galeryController::class, 'index'])->name('galery.index');
+Route::get('galery/{image}', [galeryController::class, 'show'])->name('galery.show');
 Route::get('activities', [FrontendActivityController::class, 'index'])->name('home.activity.index');
 Route::get('activities/{activity}', [FrontendActivityController::class, 'show'])->name('home.activity.show');
 

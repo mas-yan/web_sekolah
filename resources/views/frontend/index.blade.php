@@ -2,15 +2,6 @@
 
 @section('style')
 <style>
-.txt{
-  display: -webkit-box;
-  max-height: 5rem;
-  max-width: 100%;
-  -webkit-line-clamp: 1;
-  -webkit-box-orient: vertical;
-  overflow: hidden;
-}
-
   @media (min-width: 992px) { 
     .galery{
       min-width: 400px;
@@ -75,12 +66,12 @@
           <div class="row">
             @foreach ($galery as $value)
               <div class="col-md-6 mb-4">
-                <a href="{{route('home.galery', $value->slug)}}" class="card bg-secondary text-decoration-none text-white h-100 shadow-sm border-0 galery rounded-lg">
+                <a href="{{route('galery.show', $value->slug)}}" class="card bg-secondary text-decoration-none text-white h-100 shadow-sm border-0 galery rounded-lg">
                   <div class="card-img">
                     <img src="{{$value->image}}" class="w-100" style="width: 100%; height: 200px; border-top-left-radius: 0.3rem; border-top-right-radius: 0.3rem;">
                   </div>
                   <div class="card-body text-center">
-                    <h6 class="">{{$value->title}}</h6>
+                    <h6 class="txt">{{$value->title}}</h6>
                   </div>
                 </a>
               </div>

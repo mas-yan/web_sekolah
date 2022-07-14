@@ -46,6 +46,15 @@
             border-radius: 10px !important;
         }
 
+        .txt{
+            display: -webkit-box;
+            max-height: 5rem;
+            max-width: 100%;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
         @media (min-width: 992px) { 
             .active{
                 background-color: #f7c23e !important;

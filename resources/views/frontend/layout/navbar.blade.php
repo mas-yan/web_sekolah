@@ -46,7 +46,7 @@
       <div class="navbar-nav">
         <a class="nav-link pl-3 pl-lg-2 {{ request()->is('/') ? 'active' : '' }}" href="/">Home <span class="sr-only">(current)</span></a>
         <a class="nav-link pl-3 pl-lg-2 {{ request()->is('article*') ? 'active' : '' }}" href="/article">Berita</a>
-        <a class="nav-link pl-3 pl-lg-2 {{ request()->is('galery*') ? 'active' : '' }}" href="/galery">Galery</a>
+        <a class="nav-link pl-3 pl-lg-2 {{ request()->is('galery*') ? 'active' : '' }}" href="{{route('galery.index')}}">Galery</a>
         <a class="nav-link pl-3 pl-lg-2 {{ request()->is('activities*') ? 'active' : '' }}" href="{{route('home.activity.index')}}">Agenda kegiatan</a>
         <li class="nav-item dropdown">
           <a class="nav-link pl-3 pl-lg-2 dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-expanded="false">
