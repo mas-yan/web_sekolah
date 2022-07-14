@@ -11,7 +11,6 @@ trait HasImage
 {
   public function uploadImage($request, $path)
   {
-    // dd($request->file('image'));
     $image = null;
     if ($request->file('image')) {
       $image = $request->file('image');

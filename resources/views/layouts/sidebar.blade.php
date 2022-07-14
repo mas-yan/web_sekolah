@@ -84,11 +84,19 @@
           <span>Jurusan</span></a>
   </li>
 
+  <!-- Divider -->
+  <hr class="sidebar-divider">
+
+  <!-- Heading -->
+  <div class="sidebar-heading">
+      Slider
+  </div>
+
   <!-- Nav Item - Tables -->
-  <li class="nav-item">
-      <a class="nav-link" href="tables.html">
-          <i class="fas fa-fw fa-table"></i>
-          <span>Tables</span></a>
+  <li class="nav-item {{ request()->is('admin/sliders*') ? 'active' : '' }}">
+      <a class="nav-link" href="{{route('sliders.index')}}">
+          <i class="fas fa-fw fa-tv"></i>
+          <span>Slider</span></a>
   </li>
 
   <!-- Divider -->

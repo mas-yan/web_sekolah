@@ -11,26 +11,22 @@
 @endsection
 
 @section('content')
-<div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+<div id="carouselExampleInterval" class="carousel slide" data-ride="carousel">
   <div class="carousel-inner">
-      <div class="carousel-item active">
-      <img src="https://source.unsplash.com/random/200x70?sig=1" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-      <img src="https://source.unsplash.com/random/200x70?sig=2" class="d-block w-100" alt="...">
-      </div>
-      <div class="carousel-item">
-      <img src="https://source.unsplash.com/random/200x70?sig=3" class="d-block w-100" alt="...">
-      </div>
+    @foreach (App\Models\Slider::Slider() as $slider)
+    <div class="carousel-item @if ($loop->first) active @endif " data-interval="5000">
+      <img src="{{$slider->slider}}" class="d-block w-100" alt="...">
+    </div>
+    @endforeach
   </div>
-  <button class="carousel-control-prev border-0 bg-transparent" type="button" data-target="#carouselExampleControls" data-slide="prev">
-      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-      <span class="sr-only">Previous</span>
-    </button>
-    <button class="carousel-control-next border-0 bg-transparent" type="button" data-target="#carouselExampleControls" data-slide="next">
-      <span class="carousel-control-next-icon" aria-hidden="true"></span>
-      <span class="sr-only">Next</span>
-    </button>
+  <button class="carousel-control-prev bg-transparent border-0" type="button" data-target="#carouselExampleInterval" data-slide="prev">
+    <span class="carousel-control-prev-icon bg-dark rounded p-3" aria-hidden="true"></span>
+    <span class="sr-only">Previous</span>
+  </button>
+  <button class="carousel-control-next bg-transparent border-0" type="button" data-target="#carouselExampleInterval" data-slide="next">
+    <span class="carousel-control-next-icon bg-dark rounded p-3" aria-hidden="true"></span>
+    <span class="sr-only">Next</span>
+  </button>
 </div>
 <!-- Begin Page Content -->
 <div class="container-fluid">
