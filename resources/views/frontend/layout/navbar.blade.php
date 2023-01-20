@@ -61,5 +61,7 @@
         </li>
       </div>
     </div>
+    <a href="/admin" class="text-white text-decoration-none">Login</a>
   </div>
 </nav>
+

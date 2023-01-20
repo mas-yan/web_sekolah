@@ -84,7 +84,7 @@
           {{-- <div class="list-group"> --}}
             @foreach ($informations as $information)
             <div class="alert alert-info shadow-sm mb-2 rounded">
-              <a href="/category/belajar" class="text-decoration-none text-dark">
+              <a href="/informations/{{$information->slug}}" class="text-decoration-none text-dark">
                 <h5 class="d-inline-block text-truncate m-0 p-0" style="max-width: 300px;">
                   <i aria-hidden="true" class="fas fa-info-circle"></i> {{$information->title}}
                 </h5>

@@ -15,6 +15,7 @@ use App\Http\Controllers\JurusanController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\SliderController;
 use App\Http\Controllers\TagController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,6 +43,7 @@ Route::get('activities/{activity}', [FrontendActivityController::class, 'show'])
 Route::prefix('admin')->group(function () {
   Route::middleware('auth')->group(function () {
     Route::get('/', [DashboardController::class, 'index'])->name('dashboard');
+    Route::resource('/users', UserController::class)->except(['show']);
     Route::resource('/tags', TagController::class)->except(['show', 'edit']);
     Route::resource('/categories', CategoryController::class)->except(['show', 'edit']);
     Route::resource('/posts', PostController::class)->except(['show']);

@@ -1,7 +1,7 @@
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sc" id="accordionSidebar" style="overflow-y: scroll; overflow-x: hidden; height:100vh;">
 
   <!-- Sidebar - Brand -->
-  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+  <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
       <div class="sidebar-brand-icon rotate-n-15">
           <i class="fas fa-laugh-wink"></i>
       </div>
@@ -97,6 +97,20 @@
       <a class="nav-link" href="{{route('sliders.index')}}">
           <i class="fas fa-fw fa-tv"></i>
           <span>Slider</span></a>
+  </li>
+  <!-- Divider -->
+  <hr class="sidebar-divider">
+
+  <!-- Heading -->
+  <div class="sidebar-heading">
+      User
+  </div>
+
+  <!-- Nav Item - Tables -->
+  <li class="nav-item {{ request()->is('admin/users*') ? 'active' : '' }}">
+      <a class="nav-link" href="{{route('users.index')}}">
+          <i class="fas fa-fw fa-user"></i>
+          <span>User</span></a>
   </li>
 
   <!-- Divider -->
