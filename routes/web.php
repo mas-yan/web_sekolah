@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ActivityController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
@@ -52,5 +53,6 @@ Route::prefix('admin')->group(function () {
     Route::resource('/images', ImageController::class)->except(['edit', 'update']);
     Route::resource('/jurusan', JurusanController::class)->except(['show']);
     Route::resource('/sliders', SliderController::class)->except(['show']);
+    Route::resource('/abouts', AboutController::class)->only(['index','edit','update']);
   });
 });

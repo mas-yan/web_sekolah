@@ -1,11 +1,12 @@
+@inject('about', 'App\Models\About')
 <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion sc" id="accordionSidebar" style="overflow-y: scroll; overflow-x: hidden; height:100vh;">
 
   <!-- Sidebar - Brand -->
   <a class="sidebar-brand d-flex align-items-center justify-content-center" href="/">
-      <div class="sidebar-brand-icon rotate-n-15">
-          <i class="fas fa-laugh-wink"></i>
+      <div class="sidebar-brand-icon">
+        <img src="{{$about->first()->logo}}" alt="image" width="50px">
       </div>
-      <div class="sidebar-brand-text mx-3">SMK KITA SEMUA <sup>2</sup></div>
+      <div class="sidebar-brand-text mx-3"> {{$about->first()->name}}</div>
   </a>
 
   <!-- Divider -->
@@ -114,6 +115,12 @@
   </li>
 
   <!-- Divider -->
+  <hr class="sidebar-divider d-none d-md-block">
+  <li class="nav-item {{ request()->is('admin/abouts*') ? 'active' : '' }}">
+    <a class="nav-link" href="{{route('abouts.index')}}">
+        <i class="fas fa-fw fa-info"></i>
+        <span>Tentang Sekolah</span></a>
+  </li>
   <hr class="sidebar-divider d-none d-md-block">
 
   <!-- Sidebar Toggler (Sidebar) -->

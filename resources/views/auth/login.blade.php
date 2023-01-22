@@ -38,8 +38,9 @@
                             <div class="col">
                                 <div class="p-5">
                                     <div class="text-center">
-                                        <h1 class="h4 text-gray-900 mb-4">SMK KITA SEMUA!</h1>
-                                    </div>                      <form class="user" method="POST">
+                                        <h1 class="h4 text-gray-900 mb-4">SMK ALMUSYAFA</h1>
+                                    </div>                      
+                                    <form class="user mb-3" method="POST">
                                       @csrf
                                         <div class="form-group">
                                             <input type="email" value="{{old('email')}}" class="form-control @error('email') is-invalid @enderror form-control-user"
@@ -70,6 +71,8 @@
                                         <button type="submit" class="btn btn-primary btn-user btn-block">
                                             Login
                                         </button>
+                                    </form>
+                                    <a href="/register" class="text-decoration-none text-center">Belum Punya Akun?</a>
                                 </div>
                             </div>
                         </div>

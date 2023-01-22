@@ -2,22 +2,22 @@
 <nav class="navbar navbar-expand-lg mb-0 navbar-dark py-1 p-lg-0 bg-primary">
   <div class="container">
     <div class="nav-nav d-lg-none mr-md-3 mr-lg-0 text-decoration-none">
-      <a class="nav-link pl-5 pl-md-2 pr-0 d-lg-none d-inline text-warning" href="#"><i class="fas fa-phone-alt"></i> <div class="d-none d-md-inline">  012-345-6789</div></a>
-      <a class="nav-link pl-md-2 pr-0 d-lg-none d-inline text-warning" href="#"><i class="fas fa-envelope"></i> <div class="d-none d-md-inline">  info@gmail.com</div></a>
-      <a class="nav-link pl-md-2 pr-0 d-lg-none d-inline text-warning" href="#"><i class="fas fa-map-marker-alt"></i> <div class="d-none d-md-inline">  Alamat: Jl. Lorem ipsum dolor sit amet.</div></a>
+      <a class="nav-link pl-5 pl-md-2 pr-0 d-lg-none d-inline text-warning" href="#"><i class="fas fa-phone-alt"></i> <div class="d-none d-md-inline">  {{$about->first()->telp}}</div></a>
+      <a class="nav-link pl-md-2 pr-0 d-lg-none d-inline text-warning" href="#"><i class="fas fa-envelope"></i> <div class="d-none d-md-inline">  {{$about->first()->email}}</div></a>
+      <a class="nav-link pl-md-2 pr-0 d-lg-none d-inline text-warning" href="#"><i class="fas fa-map-marker-alt"></i> <div class="d-none d-md-inline">  {{$about->first()->address}}</div></a>
     </div>
     <div class="collapse navbar-collapse">
       <div class="navbar-nav">
-        <a class="nav-link py-1 text-warning" href="#"><i class="fas fa-phone-alt"></i>  012-345-6789</a>
-        <a class="nav-link py-1 text-warning" href="#"><i class="fas fa-envelope"></i>  info@gmail.com</a>
-        <a class="nav-link py-1 text-warning" href="#"><i class="fas fa-map-marker-alt"></i>  Alamat: Jl. Lorem ipsum dolor sit amet.</a>
+        <a class="nav-link py-1 text-warning" href="#"><i class="fas fa-phone-alt"></i>  {{$about->first()->telp}}</a>
+        <a class="nav-link py-1 text-warning" href="#"><i class="fas fa-envelope"></i>  {{$about->first()->email}}</a>
+        <a class="nav-link py-1 text-warning" href="#"><i class="fas fa-map-marker-alt"></i>  {{$about->first()->address}}</a>
       </div>
     </div>
     <div class="nav-nav pl-sm-5 ml-sm-5 pl-md-0 ml-md-0">
-      <a class="nav-link text-right d-inline pr-lg-2 ml-sm-5 pl-sm-5 pl-md-0 ml-md-0 pr-0 text-white" href="#"><i class="fab fa-facebook"></i><a>
-      <a class="nav-link pl-md-1 d-inline pr-0 pr-lg-2 text-white" href="#"><i class="fab fa-youtube"></i><a>
-      <a class="nav-link pl-md-1 d-inline pr-0 pr-lg-2 text-white" href="#"><i class="fab fa-twitter"></i><a>
-      <a class="nav-link pl-md-1 d-inline pr-0 pr-lg-2 text-white" href="#"><i class="fab fa-instagram"></i><a>
+      <a class="nav-link text-right d-inline pr-lg-2 ml-sm-5 pl-sm-5 pl-md-0 ml-md-0 pr-0 text-white" href="{{$about->first()->facebook}}"><i class="fab fa-facebook"></i><a>
+      <a class="nav-link pl-md-1 d-inline pr-0 pr-lg-2 text-white" href="{{$about->first()->youtube}}"><i class="fab fa-youtube"></i><a>
+      <a class="nav-link pl-md-1 d-inline pr-0 pr-lg-2 text-white" href="{{$about->first()->twitter}}"><i class="fab fa-twitter"></i><a>
+      <a class="nav-link pl-md-1 d-inline pr-0 pr-lg-2 text-white" href="{{$about->first()->instagram}}"><i class="fab fa-instagram"></i><a>
     </div>
   </div>
 </nav>
@@ -25,11 +25,11 @@
 
 <section class="bg-white mt-0">
   <div class="container">
-    <img src="{{asset('img/sekolah.png')}}" class="mx-auto d-block d-lg-inline pt-2" alt="logo" width="70">
+    <img src="{{$about->first()->logo}}" class="mx-auto d-block d-lg-inline pt-2" alt="logo" width="70">
     <div class="d-inline-block">
       <div class="d-flex flex-column text-center text-lg-left ml-3">
-        <h3 class="font-weight-bold d-lg-inline mt-0 mb-0 pt-0" style="color: #244b73; font-family: 'Merriweather Sans', sans-serif;">SMK ALMUSYAFA </h3>
-        <p class="d-inline-block">SMK UNGGULAN YANG MENGHASILKAN SDM BERMUTU DAN BERDAYA SAING TINGGI</p>
+        <h3 class="font-weight-bold d-lg-inline mt-0 mb-0 pt-0" style="color: #244b73; font-family: 'Merriweather Sans', sans-serif;">{{$about->first()->name}} </h3>
+        <p class="d-inline-block">{{$about->first()->moto}}</p>
       </div>
     </div>
   </div>
